@@ -57,11 +57,16 @@
 				// onLoad callback: what get's called once the full model has loaded
 				function (gltf) {
           // gltf.scene contains the Three.js object group that represents the 3d object of the model
-					scene.add(gltf.scene);
-          console.log("Model added to scene");
-          model.position.y = -10;
-          model.position.z = 5;
+				//	scene.add(gltf.scene);
+          const model = gltf.scene;
+          console.log(model);
+          model.position.y = -5;
+          model.position.x = 0;
+          model.position.z = -15;
           
+          scene.add(model);
+          console.log("Model added to scene");
+        
         
           
           // you can optionally change the position of the model
