@@ -39,11 +39,8 @@
 			scene.add(light);
 
       // specify a model URL
-  //    const modelUrl = 'https://raw.githubusercontent.com/immersive-web/webxr-samples/main/media/gltf/space/space.gltf';
-      const modelUrl = 'https://raw.githubusercontent.com/tiago012/santa_model/main/Santa.gltf';
-      
-			// create a GLTF loader object. GLTF is a 3D model format usually called the "JPEG of 3D" because it is
-      // fast and efficient to use, which is ideal for the web
+     const modelUrl = 'https://raw.githubusercontent.com/tiago012/santa_model/main/Santa.gltf';      
+			
 			loader = new THREE.GLTFLoader();
       
       // learn about other types of 3D model formats you can use here: 
@@ -51,29 +48,41 @@
       
       // load the model
       // loader takes in a few arguments loader(model url, onLoad callback, onProgress callback, onError callback)
+      
 				loader.load(
 				// model URL
 				modelUrl,
+       
+        
 				// onLoad callback: what get's called once the full model has loaded
 				function (gltf) {
           // gltf.scene contains the Three.js object group that represents the 3d object of the model
 				//	scene.add(gltf.scene);
+          
           const model = gltf.scene;
           console.log(model);
+      //    model.position.y = -5;
+      //   model.position.x = 0;
+      //    model.position.z = -15;
+          
+          model.position.set (0,-5,-15);
+          scene.add(model);
+          console.log("Model added to scene");
+                  
+          /*const model2 = gltf.scene;
+          console.log(model2);
           model.position.y = -5;
           model.position.x = 0;
           model.position.z = -15;
-          
-          scene.add(model);
-          console.log("Model added to scene");
-        
-        
-          
+          scene.add(model2);
+          console.log("Model added to scene");*/
+               
           // you can optionally change the position of the model
           // gltf.scene.position.z = -10; // negative Z moves the model in the opposite direction the camera is facing
           // gltf.scene.position.y = 5; // positive Y moves the model up
           // gltf.scene.position.x = 10; // positive X moves hte model to the right
 				},
+          
 				// onProgress callback: optional function for showing progress on model load
 				function (xhr) {
 		      // console.log((xhr.loaded / xhr.total * 100) + '% loaded' );
